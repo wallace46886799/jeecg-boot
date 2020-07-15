@@ -10,6 +10,6 @@ WORKDIR /jeecg-boot
 
 EXPOSE 8080
 
-ADD ./target/jeecg-boot-module-system-2.1.2.jar ./
+ADD ./target/jeecg-boot-module-system-2.2.0.jar ./
 
-CMD sleep 60;java -Djava.security.egd=file:/dev/./urandom -jar jeecg-boot-module-system-2.1.2.jar --spring.profiles.active=docker
+CMD sleep 60;java -Djava.security.egd=file:/dev/./urandom -jar jeecg-boot-module-system-2.2.0.jar --spring.profiles.active=docker
