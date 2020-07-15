@@ -1,0 +1,41 @@
+## 针对 https://i.gtja.com/wxcos/securities/stock/query/totalAssetsInfo.json 的抓包记录
+
+### 请求 Request:
+
+GET /wxcos/securities/stock/query/totalAssetsInfo.json HTTP/1.1
+Host: i.gtja.com
+Accept: application/json, text/plain, */*
+Connection: keep-alive
+Cookie: JSESSIONID=5D9E828B1260A1455D7BCFA21AC13FC4; _displaytype=.mobile; accountType=7; forcedisplay=.mobile; loginAccount=420303198209121736; loginBranch=; loginWay=quickly; suitability=0; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22170014f10ee36e-08440082a6aae1-423e7d6a-304704-170014f10ef232%22%2C%22first_id%22%3A%22%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22170014f10ee36e-08440082a6aae1-423e7d6a-304704-170014f10ef232%22%7D; Hm_lpvt_33a906ba02982c5141104b551b576bf3=1586872741; Hm_lvt_33a906ba02982c5141104b551b576bf3=1586306599,1586688871,1586703443,1586872741; _tcs=8be610008e7709292964528f74aa8325; _wxcos-suid=3261c967ee70afde537d12207ded75f2; _tcs-sb=5678186005745533545; _tcs-tm=2020-04-12 18:55:03
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.8(0x17000820) NetType/WIFI Language/zh_CN
+Accept-Language: zh-cn
+Referer: https://i.gtja.com/quotes/v-index.html
+Accept-Encoding: gzip, deflate, br
+
+
+
+### 请求 Response:
+
+HTTP/1.1 200 
+Server: *
+Date: Tue, 14 Apr 2020 13:59:29 GMT
+Content-Type: application/json;charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+Content-Language: zh-CN
+Front-End-Https: on
+Content-Encoding: gzip
+
+{
+	"success":"true"
+			,"enableBalance":"10000.00"
+		,"totalMarket":"122303.00"
+		,"stockTotalAssets":"1578509.49"
+		,"fetchBalance":"10000.00"
+	
+	
+}
+
+====
+该记录由 Stream 抓取，仅用于分析和学习。

@@ -1,0 +1,78 @@
+>> 本文件内容为 https://i.gtja.com/wxcos/weixin/in.html 的请求抓包详情，供您分析和定位问题。
+
+1. 请求内容 Request:
+
+POST /wxcos/weixin/in.html HTTP/1.1
+Host: i.gtja.com
+Content-Type: application/x-www-form-urlencoded
+Origin: https://i.gtja.com
+Accept-Encoding: gzip, deflate, br
+Cookie: JSESSIONID=FD074CF31C1435990C1394CDC1E637BC; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22170014f10ee36e-08440082a6aae1-423e7d6a-304704-170014f10ef232%22%2C%22first_id%22%3A%22%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%22170014f10ee36e-08440082a6aae1-423e7d6a-304704-170014f10ef232%22%7D; Hm_lpvt_33a906ba02982c5141104b551b576bf3=1593781505; Hm_lvt_33a906ba02982c5141104b551b576bf3=1591231965,1593612156,1593659505,1593779972; _tcs=8be610008e7709292964528f74aa8325; _displaytype=.mobile; forcedisplay=.mobile; accountType=7; loginAccount=420303198209121736; loginBranch=; loginWay=quickly; suitability=0; _wxcos-suid=eb6df5c6f45c45f646f1fcf459d25b98; _tcs-sb=5678186005745533545; _tcs-tm=2020-04-12 18:55:03
+Connection: keep-alive
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.13(0x17000d2a) NetType/WIFI Language/zh_CN
+Referer: https://i.gtja.com/wxcos/weixin/in.html?url=https%3A%2F%2Fi.gtja.com%2Fquotes%2Fv-index.html%23%2Ftrade
+Content-Length: 142
+Accept-Language: zh-cn
+
+username=420303198209121736&branchNo=&branchId=&loginType=7&trackcode=8be610008e7709292964528f74aa8325&opEntrustWay=1&captcha=&password=828100
+
+2. 响应内容 Response:
+
+HTTP/1.1 302 
+Server: *
+Date: Fri, 03 Jul 2020 13:05:12 GMT
+Content-Length: 0
+Connection: keep-alive
+Set-Cookie: loginWay=quickly; Max-Age=31536000; Expires=Sat, 03-Jul-2021 13:05:11 GMT; Path=/
+Set-Cookie: loginAccount=420303198209121736; Max-Age=31536000; Expires=Sat, 03-Jul-2021 13:05:11 GMT; Path=/
+Set-Cookie: loginBranch=; Max-Age=31536000; Expires=Sat, 03-Jul-2021 13:05:11 GMT; Path=/
+Set-Cookie: accountType=7; Max-Age=31536000; Expires=Sat, 03-Jul-2021 13:05:11 GMT; Path=/
+Set-Cookie: suitability=0; Max-Age=31536000; Expires=Sat, 03-Jul-2021 13:05:11 GMT; Path=/
+Set-Cookie: rememberMe=deleteMe; Path=/wxcos; Max-Age=0; Expires=Thu, 02-Jul-2020 13:05:11 GMT
+Location: http://i.gtja.com/wxcos/securities/weixin/index.html
+Front-End-Https: on
+
+
+
+====
+该记录由 Stream 抓取，仅用于分析和学习，可 AppStore 搜索『抓包』下载，面向开发者永久免费使用。
+
+
+
+
+  
+
+GET /wxcos/weixin/in.html?url=https%3A%2F%2Fi.gtja.com%2Fquotes%2Fv-index.html%23%2Ftrade HTTP/1.1
+Host: i.gtja.com
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://i.gtja.com/quotes/v-index.html
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh,zh-CN;q=0.9
+Cookie: JSESSIONID=BCDB672187027D0CF17A122BD5BDCE66; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221730d94c3794cc-03641a5a34778c-31627405-1024000-1730d94c37a913%22%2C%22first_id%22%3A%22%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%221730d94c3794cc-03641a5a34778c-31627405-1024000-1730d94c37a913%22%7D; _wxcos-suid=78cb4553477a3d1271c0cbde14a0a97e; forcedisplay=.; _displaytype=.; Hm_lvt_33a906ba02982c5141104b551b576bf3=1593839117; loginWay=quickly; loginAccount=420303198209121736; loginBranch=; accountType=7; suitability=0; Hm_lpvt_33a906ba02982c5141104b551b576bf3=1593841005; _tcs=3de91058f705db1842ea9d1c3b607aa1
+
+
+curl 'https://i.gtja.com/wxcos/weixin/in.html' \
+  -H 'Connection: keep-alive' \
+  -H 'Cache-Control: max-age=0' \
+  -H 'Upgrade-Insecure-Requests: 1' \
+  -H 'Origin: https://i.gtja.com' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36' \
+  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+  -H 'Sec-Fetch-Site: same-origin' \
+  -H 'Sec-Fetch-Mode: navigate' \
+  -H 'Sec-Fetch-User: ?1' \
+  -H 'Sec-Fetch-Dest: document' \
+  -H 'Referer: https://i.gtja.com/wxcos/weixin/in.html?url=https%3A%2F%2Fi.gtja.com%2Fquotes%2Fv-index.html%23%2Ftrade%3Fv%3D639' \
+  -H 'Accept-Language: zh,zh-CN;q=0.9' \
+  -H 'Cookie: JSESSIONID=764CC2DF93B66A7E8FB8B85CA7A6A8E9; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221730d94c3794cc-03641a5a34778c-31627405-1024000-1730d94c37a913%22%2C%22first_id%22%3A%22%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22%24device_id%22%3A%221730d94c3794cc-03641a5a34778c-31627405-1024000-1730d94c37a913%22%7D; _wxcos-suid=78cb4553477a3d1271c0cbde14a0a97e; forcedisplay=.; _displaytype=.; Hm_lvt_33a906ba02982c5141104b551b576bf3=1593839117; loginWay=quickly; loginAccount=420303198209121736; loginBranch=; accountType=7; suitability=0; Hm_lpvt_33a906ba02982c5141104b551b576bf3=1593839445; _tcs=3de91058f705db1842ea9d1c3b607aa1' \
+  --data-raw 'username=420303198209121736&branchNo=&branchId=&loginType=7&trackcode=3de91058f705db1842ea9d1c3b607aa1&opEntrustWay=1&captcha=&password=828100' \
+  --compressed ;
