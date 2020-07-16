@@ -8,3 +8,12 @@
 
 ## front
 **/*.lock
+.settings
+/ant-design-vue-jeecg/yarn.lock
+/jeecg-boot/.project
+/jeecg-boot/jeecg-boot-base-common/.classpath
+/jeecg-boot/jeecg-boot-base-common/.project
+/jeecg-boot/jeecg-boot-module-bird/.classpath
+/jeecg-boot/jeecg-boot-module-bird/.gitignore
+/jeecg-boot/jeecg-boot-module-bird/.project
+yarn.lock
