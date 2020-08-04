@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "message": "操作成功！",
+  "code": 200,
+  "result": {
+    "total": 2,
+    "transactions": [
+      {
+        "date": "2020-07-22",
+        "price": "￥0.000",
+        "deal_type": "废单",
+        "deal_share": "7500.00股",
+        "share": "7500.00股",
+        "time": "11:00:44",
+        "deal_amount": "￥0.00"
+      },
+      {
+        "date": "2020-07-22",
+        "price": "￥0.000",
+        "deal_type": "废单",
+        "deal_share": "7500.00股",
+        "share": "7500.00股",
+        "time": "11:00:44",
+        "deal_amount": "￥0.00"
+      }
+    ]
+  },
+  "timestamp": 1595420374526
+}

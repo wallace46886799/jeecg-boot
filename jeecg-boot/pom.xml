@@ -333,11 +333,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
 
 		<!-- 阿里云短信 -->
 		<dependency>
@@ -350,6 +345,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		
+		<dependency>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-spring-boot-starter</artifactId>
 		</dependency>
 
 		<!-- aliyun oss -->
@@ -391,7 +391,17 @@
 			<dependency>
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-all</artifactId>
-				<version>4.5.11</version>
+				<version>5.0.7</version>
+			</dependency>
+			<dependency>
+				<groupId>io.github.harshilsharma63</groupId>
+				<artifactId>controller-logger</artifactId>
+				<version>1.2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-spring-boot-starter</artifactId>
+				<version>3.0.3</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

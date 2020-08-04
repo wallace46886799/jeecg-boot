@@ -22,8 +22,8 @@ spring:
         max-request-size: 10MB
   mail:
     host: smtp.163.com
-    username: 46886799@163.com
-    password: ax570318
+    username: dramlabs@163.com
+    password: ENC(PRU/DRSVkHGQ9x/XSbDiZr6jFHI4SmqAac1BZv8zlz35TG4hs1gFIP5J5+TX8HHX)
     properties:
       mail:
         smtp:
@@ -97,7 +97,7 @@ spring:
       stat-view-servlet:
         enabled: true
         loginUsername: admin
-        loginPassword: 123456
+        loginPassword: ENC(kMus2mgV1yasNdaBge9FAdhJTGukSky2EfqtGGJSr5EpEtSJ75R82bkpqzJCAVc6)
         allow:
       web-stat-filter:
         enabled: true
@@ -129,7 +129,7 @@ spring:
         master:
           url: jdbc:mysql://dreamlabs.site:3306/dreamlabs-genius?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false
           username: dreamlabs
-          password: frank@bj828100
+          password: ENC(PRU/DRSVkHGQ9x/XSbDiZr6jFHI4SmqAac1BZv8zlz35TG4hs1gFIP5J5+TX8HHX)
           driver-class-name: com.mysql.jdbc.Driver
           # 多数据源配置
           #multi-datasource1:
@@ -180,7 +180,7 @@ jeecg :
      accessKeyId: ??
      accessKeySecret: ??
   shiro:
-     excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**
+     excludeUrls: /test/jeecgDemo/demo3,/test/jeecgDemo/redisDemo/**,/account/dreamlabsAccount/holding,/account/dreamlabsAccount/transactions
   #阿里云oss存储配置
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com

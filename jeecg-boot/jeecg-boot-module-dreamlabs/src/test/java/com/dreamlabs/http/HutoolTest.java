@@ -1,4 +1,4 @@
-package com.dreamslab.http;
+package com.dreamlabs.http;
 
 import java.util.Date;
 import java.util.List;

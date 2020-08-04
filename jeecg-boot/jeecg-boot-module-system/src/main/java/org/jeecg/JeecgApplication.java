@@ -30,7 +30,7 @@ public class JeecgApplication {
         "Application Jeecg-Boot is running! Access URLs:\n\t" +
         "Local: \t\thttp://localhost:" + port + path + "/\n\t" +
         "External: \thttp://" + ip + ":" + port + path + "/\n\t" +
-        "Swagger-UI: \t\thttp://" + ip + ":" + port + path + "/doc.html\n" +
+        "Swagger-UI: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
         "----------------------------------------------------------");
 
   }

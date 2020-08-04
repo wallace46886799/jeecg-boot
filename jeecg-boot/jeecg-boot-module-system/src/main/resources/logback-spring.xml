@@ -65,8 +65,9 @@
 	<logger name="java.sql.Statement" level="INFO" />
 	<logger name="java.sql.PreparedStatement" level="INFO" />
 	
-	<logger name="cn.hutool" level="DEBUG" />
+	<logger name="cn.hutool" level="INFO" />
 	<logger name="org.jeecg" level="INFO" />
+	<logger name="io.github.logger.controller" level="DEBUG" />
 	
 	<!-- 日志输出级别 -->
 	<root level="ERROR">

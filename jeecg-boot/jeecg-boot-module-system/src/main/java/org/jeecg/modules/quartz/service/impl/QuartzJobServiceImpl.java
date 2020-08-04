@@ -92,6 +92,21 @@ public class QuartzJobServiceImpl extends ServiceImpl<QuartzJobMapper, QuartzJob
 		boolean ok = this.removeById(job.getId());
 		return ok;
 	}
+	
+	/**
+	 * 立即执行定时任务
+	 * @throws SchedulerException 
+	 */
+	@Override
+	public boolean runJob(QuartzJob quartzJob) {
+		JobKey jk = JobKey.jobKey(quartzJob.getJobClassName());
+		try {
+			scheduler.triggerJob(jk);
+			return true;
+		} catch (SchedulerException e) {
+			throw new JeecgBootException("触发定时任务失败", e);
+		}
+	}
 
 	/**
 	 * 添加定时任务

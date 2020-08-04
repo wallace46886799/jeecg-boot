@@ -267,4 +267,22 @@ public class QuartzJobController {
 		}
 		return ImportExcelUtil.imporReturnRes(errorLines,successLines,errorMessage);
 	}
+	
+	
+	/**
+	 * 启动定时任务
+	 * 
+	 * @param job
+	 * @return
+	 */
+	@GetMapping(value = "/run")
+	@ApiOperation(value = "执行定时任务")
+	public Result<Object> runJob(@RequestParam(name = "jobClassName", required = true) String jobClassName) {
+		QuartzJob job = quartzJobService.getOne(new LambdaQueryWrapper<QuartzJob>().eq(QuartzJob::getJobClassName, jobClassName));
+		if (job == null) {
+			return Result.error("定时任务不存在！");
+		}
+		quartzJobService.runJob(job);
+		return Result.ok("执行定时任务成功");
+	}
 }

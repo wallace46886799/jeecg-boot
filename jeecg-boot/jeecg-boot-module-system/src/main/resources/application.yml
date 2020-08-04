@@ -4,9 +4,9 @@ spring:
 swagger:
   production: false
   basic:
-    enable: false
+    enable: true
     username: jeecg
-    password: jeecg1314
+    password: ENC(vegbdprNaLBGnmE7DuyZiM7UqwJaQcXtRFvCCSHttSmmuvnMjffNsyOU8tZFk5Ui)
 # 第三方登录
 justauth:
   enabled: true

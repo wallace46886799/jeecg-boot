@@ -24,4 +24,6 @@ public interface IQuartzJobService extends IService<QuartzJob> {
 	boolean deleteAndStopJob(QuartzJob quartzJob);
 
 	boolean resumeJob(QuartzJob quartzJob);
+	
+	boolean runJob(QuartzJob quartzJob);
 }

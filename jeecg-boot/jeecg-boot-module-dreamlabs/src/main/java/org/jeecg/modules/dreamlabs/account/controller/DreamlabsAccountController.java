@@ -15,12 +15,14 @@ import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.aspect.annotation.AutoLog;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.system.vo.LoginUser;
+import org.jeecg.common.util.SpringContextUtils;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.dreamlabs.account.entity.DreamlabsAccount;
 import org.jeecg.modules.dreamlabs.account.entity.DreamlabsAccountParam;
 import org.jeecg.modules.dreamlabs.account.service.IDreamlabsAccountParamService;
 import org.jeecg.modules.dreamlabs.account.service.IDreamlabsAccountService;
 import org.jeecg.modules.dreamlabs.account.vo.DreamlabsAccountPage;
+import org.jeecg.modules.dreamlabs.sprider.Spider;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.def.NormalExcelConstants;
 import org.jeecgframework.poi.excel.entity.ExportParams;
@@ -45,6 +47,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import io.github.logger.controller.annotation.Logging;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -264,5 +267,51 @@ public class DreamlabsAccountController {
       }
       return Result.ok("文件导入失败！");
     }
+    
+    
+    /**
+	 * 同步持仓信息
+	 *
+	 * @param id
+	 * @return
+     * @throws Exception 
+	 */
+	@AutoLog(value = "同步持仓信息")
+	@ApiOperation(value="根据账户编号同步持仓信息", notes="根据账户编号同步持仓信息")
+	@Logging
+	@GetMapping(value = "/hoding")
+	public Result<?> holding(@RequestParam(name="id",required=true) String id) throws Exception {
+		//1278680504878501890
+		log.info("Start to sync holdings with account id:{}", id);
+		DreamlabsAccount dreamlabsAccount = dreamlabsAccountService.getById(id);
+		if (dreamlabsAccount == null) {
+			log.error("Please check account id");
+			return Result.error("Please check account id");
+		}
+		String alias = dreamlabsAccount.getAccountAlias();
+		Spider spider = (Spider) SpringContextUtils.getBean(alias+"HoldingSpider");
+		Map<String,Object> result = spider.process(id);
+		return Result.ok(result);
+	}
+	
+	
+	/**
+	 * 同步交易信息
+	 *
+	 * @param id
+	 * @return
+	 */
+	@AutoLog(value = "同步交易信息")
+	@ApiOperation(value="根据账户编号同步交易信息", notes="根据账户编号同步交易信息")
+	@Logging
+	@GetMapping(value = "/transactions")
+	public Result<?> transactions(@RequestParam(name="id",required=true) String id)  throws Exception {
+		log.info("Start to sync transactions with account id:{}", id);
+		DreamlabsAccount dreamlabsAccount = dreamlabsAccountService.getById(id);
+		String alias = dreamlabsAccount.getAccountAlias();
+		Spider spider = (Spider) SpringContextUtils.getBean(alias+"TransactionSpider");
+		Map<String,Object> result = spider.process(id);
+		return Result.ok(result);
+	}
 
 }

@@ -1,4 +1,4 @@
-package com.dreamslab.http;
+package com.dreamlabs.http;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,11 +13,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ById;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
@@ -33,7 +35,7 @@ import net.lightbody.bmp.mitm.TrustSource;
 import net.lightbody.bmp.proxy.CaptureType;
 
 @Slf4j
-public class SeleniumTest {
+public class GtjaTest {
 
 	private WebDriver driver;
 	
@@ -43,8 +45,11 @@ public class SeleniumTest {
 	
 	private boolean isCustomSSL = false;
 	
+	// 登录密码402619
+	// 支付密码471234
+	
 	private static String cookies = "_displaytype=.mobile; forcedisplay=.mobile; accountType=7; loginAccount=420303198209121736; loginBranch=; loginWay=quickly; suitability=0; Hm_lpvt_33a906ba02982c5141104b551b576bf3=1594098225; Hm_lvt_33a906ba02982c5141104b551b576bf3=1593951272,1594046079,1594085123,1594095108; _tcs=49446c09b94574c27fcf735f48f02927; _tcs-sb=5678186005745533545; _mall-suid=23ee9793bf82f12816b65ff3ad46e107; _msg-suid=90e4aff8221f7480700b608c3beb6e44; _cos-suid=27021c6c30024a0ae704041f12ad9d31; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221730f222ab4ad2-0a41af2199f277-7427e73-304704-1730f222ab5ca9%22%2C%22%24device_id%22%3A%221730f222ab4ad2-0a41af2199f277-7427e73-304704-1730f222ab5ca9%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%7D; _tcs-tm=2020-07-05 18:41:59; Hm_lvt_8677059eb5096cf2cc4ba1a3476a1f6b=1593686633";
-
+	//private static String cookies = "_displaytype=.mobile; forcedisplay=.mobile; accountType=7; loginAccount=420303198209121736; loginBranch=; loginWay=quickly; suitability=0; Hm_lpvt_33a906ba02982c5141104b551b576bf3=1594098225; Hm_lvt_33a906ba02982c5141104b551b576bf3=1593951272,1594046079,1594085123,1594095108; _tcs=49446c09b94574c27fcf735f48f02927; _tcs-sb=5678186005745533545; _mall-suid=23ee9793bf82f12816b65ff3ad46e107; _msg-suid=90e4aff8221f7480700b608c3beb6e44; _cos-suid=27021c6c30024a0ae704041f12ad9d31; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221730f222ab4ad2-0a41af2199f277-7427e73-304704-1730f222ab5ca9%22%2C%22%24device_id%22%3A%221730f222ab4ad2-0a41af2199f277-7427e73-304704-1730f222ab5ca9%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%7D; _tcs-tm=2020-07-05 18:41:59; Hm_lvt_8677059eb5096cf2cc4ba1a3476a1f6b=1593686633";
 	@BeforeClass
 	public static void setupClass() {
 		WebDriverManager.chromedriver().setup();
@@ -56,7 +61,7 @@ public class SeleniumTest {
 		mobileEmulation.put("deviceName", "iPhone X");
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
-		chromeOptions.addArguments("--headless");
+		//chromeOptions.addArguments("--headless");
 		chromeOptions.addArguments("Host: i.gtja.com");
 		chromeOptions.addArguments("Connection: keep-alive");
 		chromeOptions.addArguments("Upgrade-Insecure-Requests: 1");
@@ -171,14 +176,12 @@ public class SeleniumTest {
 		
 		
 		driver.get("https://i.gtja.com/evercos/in.html");
-		
+		Thread.sleep(3000);
 		driver.findElement(By.id("quicklyPassword")).sendKeys("828100");
+		Thread.sleep(3000);
 		driver.findElement(By.id("quicklyLogin")).click();
-
-		driver.get("https://i.gtja.com/evercos/securities/index.html");
-
-		driver.get("https://i.gtja.com/evercos/securities/stock/trade/index.html");
-		
+		Thread.sleep(3000);
+		//driver.get("https://i.gtja.com/evercos/securities/index.html");
 		
 		 // get the HAR data
 		if(proxy!=null) {
@@ -191,34 +194,7 @@ public class SeleniumTest {
 	}
 	
 	
-	@Test
-	public void dreamlabs_site() {
-
-	    // create a new HAR with the label "dreamlabs.site"
-	    proxy.newHar("dreamlabs.site");
-	    
-	    // open dreamlabs.site
-	    driver.get("http://dreamlabs.site/#/dashboard");
-
-	    // get the HAR data
-	    Har har = proxy.getHar();
-	    log.info("Har is {}.",har);
-	    
-	    try {
-	    	Thread.sleep(3000000);
-	    }catch(Exception e) {
-	    	
-	    }
-	}
-	
-	
 	private void logout() throws Exception {
-		//持仓记录
-		driver.get("https://i.gtja.com/evercos/securities/stock/trade/index.html");
-		Thread.sleep(3000);
-		//交易记录		
-		driver.get("https://i.gtja.com/evercos/securities/stock/query/deal.html");
-		Thread.sleep(3000);
 		//退出
 		driver.get("https://i.gtja.com/mall/eplus/rest/logOut.json");
 		Thread.sleep(3000);
@@ -235,7 +211,10 @@ public class SeleniumTest {
 	}
 	
 	
-	
+	/**
+	 * 自动打新
+	 * @throws Exception
+	 */
 	@Test
 	public void ipo_shares() throws Exception{
 		//0.登录
@@ -251,10 +230,386 @@ public class SeleniumTest {
 		Object result=((JavascriptExecutor) driver).executeScript("$(\"#oneKeyBuy\").click()");
 		log.info("Result is {}",result);
 		
-		//3.等待30秒
-		Thread.sleep(30000);
+		//3.等待5秒然后退出
+		Thread.sleep(5000);
+		logout();
 	}
 	
+	/**
+	 * <div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="0">
+						<p class="pure-u-1-2 tl">万 科Ａ  <i>000002</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>43568.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="000002" data-exchange_type="2" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>1600.00</p><span>持股数量</span>
+						<p>1600.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>27.23</p><span>现价</span>
+						<p>27.152</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="up">124.30</p><span>浮动盈亏</span>	
+						<p class="up">0.29%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+		</div>
+		
+		
+		<div id="holdings-panel" class="eui-grid-content bg">
+		
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="0">
+						<p class="pure-u-1-2 tl">万 科Ａ  <i>000002</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>43568.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="000002" data-exchange_type="2" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>1600.00</p><span>持股数量</span>
+						<p>1600.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>27.23</p><span>现价</span>
+						<p>27.152</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="up">124.30</p><span>浮动盈亏</span>	
+						<p class="up">0.29%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="1">
+						<p class="pure-u-1-2 tl">美的集团  <i>000333</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>31950.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="000333" data-exchange_type="2" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>500.00</p><span>持股数量</span>
+						<p>500.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>63.90</p><span>现价</span>
+						<p>53.911</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="up">4994.60</p><span>浮动盈亏</span>	
+						<p class="up">18.53%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="2">
+						<p class="pure-u-1-2 tl">本钢转债  <i>127018</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>1000.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="127018" data-exchange_type="2" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>10.00</p><span>持股数量</span>
+						<p>10.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>100.00</p><span>现价</span>
+						<p>100.000</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p>0.00</p><span>浮动盈亏</span>	
+						<p>0.00</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="3">
+						<p class="pure-u-1-2 tl">微创光电  <i>430198</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>2001.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="430198" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>100.00</p><span>持股数量</span>
+						<p>100.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>20.01</p><span>现价</span>
+						<p>21.441</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="down">-143.12</p><span>浮动盈亏</span>	
+						<p class="down">-6.68%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="4">
+						<p class="pure-u-1-2 tl">苏轴股份  <i>430418</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>1795.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="430418" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>100.00</p><span>持股数量</span>
+						<p>100.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>17.95</p><span>现价</span>
+						<p>18.740</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="down">-79.00</p><span>浮动盈亏</span>	
+						<p class="down">-4.22%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="5">
+						<p class="pure-u-1-2 tl">麟龙股份  <i>430515</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>2198.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="430515" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>200.00</p><span>持股数量</span>
+						<p>200.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>10.99</p><span>现价</span>
+						<p>12.382</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="down">-278.31</p><span>浮动盈亏</span>	
+						<p class="down">-11.25%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="6">
+						<p class="pure-u-1-2 tl">蓝山科技  <i>830815</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>3114.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="830815" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>600.00</p><span>持股数量</span>
+						<p>600.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>5.19</p><span>现价</span>
+						<p>3.569</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="up">972.87</p><span>浮动盈亏</span>	
+						<p class="up">45.42%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="7">
+						<p class="pure-u-1-2 tl">鸿辉光通  <i>832063</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>3556.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="832063" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>400.00</p><span>持股数量</span>
+						<p>400.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>8.89</p><span>现价</span>
+						<p>5.736</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="up">1261.80</p><span>浮动盈亏</span>	
+						<p class="up">54.99%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="8">
+						<p class="pure-u-1-2 tl">利尔达  <i>832149</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>2795.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="832149" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>500.00</p><span>持股数量</span>
+						<p>500.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>5.59</p><span>现价</span>
+						<p>4.613</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="up">488.74</p><span>浮动盈亏</span>	
+						<p class="up">21.18%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="9">
+						<p class="pure-u-1-2 tl">贝特瑞  <i>835185</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>4591.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="835185" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>100.00</p><span>持股数量</span>
+						<p>100.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>45.91</p><span>现价</span>
+						<p>47.797</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="down">-188.67</p><span>浮动盈亏</span>	
+						<p class="down">-3.95%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="10">
+						<p class="pure-u-1-2 tl">用友金融  <i>839483</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>2371.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="839483" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>100.00</p><span>持股数量</span>
+						<p>100.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>23.71</p><span>现价</span>
+						<p>17.559</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="up">615.06</p><span>浮动盈亏</span>	
+						<p class="up">35.04%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="11">
+						<p class="pure-u-1-2 tl">颖泰生物  <i>889001</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>545.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="889001" data-exchange_type="9" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>100.00</p><span>持股数量</span>
+						<p>100.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>5.45</p><span>现价</span>
+						<p>5.450</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p>0.00</p><span>浮动盈亏</span>	
+						<p>0.00</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+				<div class="eui-grid-row line">
+					<div class="eui-grid-row-title" name="market" data-index="12">
+						<p class="pure-u-1-2 tl">建设银行  <i>601939</i><i class="icon-stock-market"></i></p>
+						<p class="pure-u-1-2 tr"><span class="icon-qiandai icon-total-holding"></span>25160.00</p>
+					</div>
+					<div class="eui-grid-row-content" data-stock_code="601939" data-exchange_type="1" name="sale">
+					<div class="pure-u-2-5 eui-grid-col tl">
+						<p>4000.00</p><span>持股数量</span>
+						<p>4000.00</p><span>可卖数量</span>
+					</div>
+					<div class="pure-u-1-5 eui-grid-col">
+						<p>6.29</p><span>现价</span>
+						<p>6.724</p><span>成本价格</span>
+					</div>
+					<div class="pure-u-2-5 eui-grid-col">
+						<p class="down">-1736.80</p><span>浮动盈亏</span>	
+						<p class="down">-6.46%</p><span>盈亏比例</span>
+					</div> 
+					</div>
+					<div class="eui-grid-row-market pure-u-1"></div>
+				</div>            
+			
+		
+	</div>
+	 * 持仓	
+	 * @throws Exception
+	 */
+	@Test
+	public void holding_shares() throws Exception{
+		//0.登录
+		login();
+	
+		//1.持仓列表
+		driver.get("https://i.gtja.com/evercos/securities/stock/trade/index.html");
+		Thread.sleep(5000);
+		List<WebElement> elements  = driver.findElements(By.className("eui-grid-row"));
+		int size = elements.size();
+		
+		String prefix = "//*[@id='holdings-panel']/div[";
+		String surfix1 = "]/div[1]/p[1]";
+		String surfix2 = "]/div[1]/p[2]";
+		String surfix3 = "]/div[2]/div[1]/p[1]";
+		String surfix4 = "]/div[2]/div[1]/p[2]";
+		String surfix5 = "]/div[2]/div[2]/p[1]";
+		String surfix6 = "]/div[2]/div[2]/p[2]";
+		String surfix7 = "]/div[2]/div[3]/p[1]";
+		String surfix8 = "]/div[2]/div[3]/p[2]";
+		
+		for(int i = 1 ;i < size-1; i++ ) {
+			String name = driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix1)).getText();
+			String code = driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix1+"/i[1]")).getText();
+			////*[@id="holdings-panel"]/div[1]/div[1]/p[2]
+			String holding = driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix2)).getText(); 
+			////*[@id="holdings-panel"]/div[1]/div[2]/div[1]/p[1]
+			String shares =  driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix3)).getText();
+			String available_shares =  driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix4)).getText();
+			String price =  driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix5)).getText();
+			String orig_price =  driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix6)).getText();
+			String fy =  driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix7)).getText();
+			String fyr =  driver.findElement(By.xpath(prefix+String.valueOf(i)+surfix8)).getText();
+			
+			System.out.println("=====================");
+			System.out.println(name);
+			System.out.println(code);
+			System.out.println(holding);
+			System.out.println(shares);
+			System.out.println(available_shares);
+			System.out.println(price);
+			System.out.println(orig_price);
+			System.out.println(fy);
+			System.out.println(fyr);
+		}
+		
+		String balance = driver.findElement(By.xpath("//*[@id=\"enableBalance\"]")).getText();
+		System.out.println(balance);
+		//2.等待5秒然后退出
+		Thread.sleep(5000);
+		logout();
+	}
+	
+	/**
+	 * 自动购买
+	 * @throws Exception
+	 */
 	@Test
 	public void buy() throws Exception{
 		//0.登录
@@ -308,11 +663,15 @@ public class SeleniumTest {
 				"			}\n" + 
 				"})");
 		
-		//7.等待30秒
-		Thread.sleep(30000);
+		//7.等待5秒然后退出
+		Thread.sleep(5000);
+		logout();
 	}
 	
-	
+	/**
+	 * 自动卖出
+	 * @throws Exception
+	 */
 	@Test
 	public void sell() throws Exception{
 		//0.登录
@@ -320,19 +679,396 @@ public class SeleniumTest {
 
 		//1.
 		driver.get("https://i.gtja.com/quotes/v-index.html");
-		
 		Thread.sleep(3000);
 		
 		driver.get("https://i.gtja.com/evercos/securities/stock/trade/buy_index.html");
-		
 		Thread.sleep(3000);
 		
 		// $("#oneKeyBuy")
 		Object result = ((JavascriptExecutor) driver).executeScript("$(\"#oneKeyBuy\").click()");
-		
 		log.info("Result is {}",result);
 		
-		Thread.sleep(30000);
+		//7.等待5秒然后退出
+		Thread.sleep(5000);
+		logout();
+	}
+
+	
+	/**
+	 * <div id="" class="eui-tabs-title eui-tabs-title0 pure-g">
+				<div class="eui-tabs tabs2 allIn">
+					<div id="" class="eui-tabs-title eui-tabs-title0">
+						<div class="pure-g eui-grid">
+							<div class="eui-grid-content bg" id="current-panel">
+
+	
+    <div class="eui-grid-row line">
+        <div class="eui-grid-row-title">
+              <p class="pure-u-1-2">现金管家 <i>119587</i></p>
+              <p class="pure-u-1-2"></p>
+        </div>
+        <div class="pure-u-1-3 eui-grid-col tl">
+            <p>10:17:27</p>
+            <span>成交时间</span>
+        	<p>￥1.000</p>
+            <span>成交价格</span>
+        </div>
+        <div class="pure-u-1-3 eui-grid-col">
+            <p>500000.00股</p>
+            <span>委托数量</span>
+            <p>500000.00股</p>
+            <span>成交数量</span>
+        </div>
+        <div class="pure-u-1-3 eui-grid-col">
+            <p>普通成交</p>
+            <span>成交类型</span>
+            <p>￥500000.00</p>
+            <span>成交金额</span>
+        </div>
+    </div>
+	
+
+</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	 * 当日交易记录:current-panel
+	 * @throws Exception
+	 */
+	@Test
+	public void current_trans_detail() throws Exception{
+		//0.登录
+		login();
+		//1.持仓列表
+		driver.get("https://i.gtja.com/evercos/securities/stock/query/deal.html");
+		
+		driver.findElement(ById.id("current-panel"));
+		
+		//*[@id="current-panel"]/div
+		
+		List<WebElement> elements = driver.findElements(ById.xpath("//*[@id=\"current-panel\"]/div"));
+		
+		int size = elements.size();
+		
+		System.out.println(size);
+		
+		//*[@id="current-panel"]/div/div[1]/p[1]  交易标的
+		
+		//*[@id="current-panel"]/div/div[2]/p[1] 成交时间
+		
+		//*[@id="current-panel"]/div/div[2]/p[2] 成交价格
+		
+		//*[@id="current-panel"]/div/div[3]/p[1] 委托数量
+		
+		//*[@id="current-panel"]/div/div[3]/p[2] 成交数量
+		
+		//*[@id="current-panel"]/div/div[4]/p[1] 成交类型
+		
+		//*[@id="current-panel"]/div/div[4]/p[2] 成交金额
+		
+		
+		//*[@id="current-panel"]/div/div[1]/p[1]
+//		System.out.println("==========");
+//		String name = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div/div[1]/p[1]")).getText();
+//		System.out.println(name);
+//		String time = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div/div[2]/p[1]")).getText();
+//		System.out.println(time);
+//		String price = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div/div[2]/p[2]")).getText();
+//		System.out.println(price);
+//		String share = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div/div[3]/p[1]")).getText();
+//		System.out.println(share);
+//		String deal_share = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div/div[3]/p[2]")).getText();
+//		System.out.println(deal_share);
+//		String deal_type = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div/div[4]/p[1]")).getText();
+//		System.out.println(deal_type);
+//		String deal_amount = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div/div[4]/p[1]")).getText();
+//		System.out.println(deal_amount);
+		
+		for(int i = 1; i <= size; i++ ) {
+			System.out.println("==========");
+			
+			String name = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div[1]/p[1]")).getText();
+			System.out.println(name);
+			
+			for(int j = 2; j <= 4; j++ ) {
+				for(int k = 1; k <=2;k++) {
+					String value = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div["+j+"]/p["+k+"]")).getText();
+					System.out.println(value);
+				}
+			}
+//			
+//			String time = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div[2]/p[1]")).getText();
+//			System.out.println(time);
+//			String price = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div[2]/p[2]")).getText();
+//			System.out.println(price);
+//			String share = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div[3]/p[1]")).getText();
+//			System.out.println(share);
+//			String deal_share = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div[3]/p[2]")).getText();
+//			System.out.println(deal_share);
+//			String deal_type = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div[4]/p[1]")).getText();
+//			System.out.println(deal_type);
+//			String deal_amount = driver.findElement(By.xpath("//*[@id=\"current-panel\"]/div["+i+"]/div[4]/p[2]")).getText();
+//			System.out.println(deal_amount);
+		}
+		
+		Thread.sleep(5000);
+						
+		
+		Thread.sleep(300000);
+	}
+	
+	@Test
+	public void settlement() throws Exception{
+		//0.登录
+		login();
+
+		driver.get("https://i.gtja.com/wxcos/securities/stock/query/weixin/settlement.html");
+		
+		Thread.sleep(5000);
+		
+		WebElement element = driver.findElement(ById.id("billing-panel"));
+		
+		//*[@id="current-panel"]/div
+		
+		List<WebElement> elements = driver.findElements(ById.xpath("//*[@id=\"current-panel\"]/div"));
+		
+		int size = elements.size();
+		
+		System.out.println(size);
+		
+		for(int i = 1; i <= size; i++ ) {
+			String name = driver.findElement(By.xpath("*[@id=\"billing-panel\"]/div["+i+"]/div[1]/p[1]")).getText();
+			System.out.println(name);
+			String type = driver.findElement(By.xpath("*[@id=\"billing-panel\"]/div["+i+"]/div[1]/p[2]")).getText();
+			System.out.println(type);
+			for(int j = 2; j <= 4; j++ ) {
+				for(int k = 1; k <=6;k++) {
+					String value = driver.findElement(By.xpath("*[@id=\"billing-panel\"]/div["+i+"]/div["+j+"]/p["+k+"]")).getText();
+					System.out.println(value);
+					String desc = driver.findElement(By.xpath("*[@id=\"billing-panel\"]/div["+i+"]/div["+j+"]/span["+k+"]")).getText();
+					System.out.println(desc);
+				}
+			}
+		}
+		Thread.sleep(300000);
+	}
+	
+	
+	//https://i.gtja.com/wxcos/securities/stock/query/weixin/settlement.html
+	
+	//*[@id="billing-panel"]
+	//-------------1
+	//*[@id="billing-panel"]/div[5]/div[1]/p[1]  交易标的
+	//*[@id="billing-panel"]/div[5]/div[1]/p[2]  交易类型
+	
+	//-------------2	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[1]  交易日期
+	//*[@id="billing-panel"]/div[5]/div[2]/span[1]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[2]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[2]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[3]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[3]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[4]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[4]
+	
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[5]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[5]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[6]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[6]
+	
+	//-------------3
+	//*[@id="billing-panel"]/div[5]/div[3]/p[1]  交易日期
+	//*[@id="billing-panel"]/div[5]/div[3]/span[1]
+	
+	//*[@id="billing-panel"]/div[5]/div[3]/p[2]
+	//*[@id="billing-panel"]/div[5]/div[3]/span[2]
+	
+	//*[@id="billing-panel"]/div[5]/div[3]/p[3]
+	//*[@id="billing-panel"]/div[5]/div[3]/span[3]
+	
+	//*[@id="billing-panel"]/div[5]/div[3]/p[4]
+	//*[@id="billing-panel"]/div[5]/div[3]/span[4]
+	
+	
+	//*[@id="billing-panel"]/div[5]/div[3]/p[5]
+	//*[@id="billing-panel"]/div[5]/div[3]/span[5]
+	
+	//*[@id="billing-panel"]/div[5]/div[3]/p[6]
+	//*[@id="billing-panel"]/div[5]/div[3]/span[6]
+	
+	//-------------4
+	//*[@id="billing-panel"]/div[5]/div[4]/p[1]  交易日期
+	//*[@id="billing-panel"]/div[5]/div[4]/span[1]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[2]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[2]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[3]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[3]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[4]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[4]
+	
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[5]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[5]
+	
+	//*[@id="billing-panel"]/div[5]/div[2]/p[6]
+	//*[@id="billing-panel"]/div[5]/div[2]/span[6]
+	
+	
+//	<div class="eui-grid-row line">
+//    <div class="eui-grid-row-title">
+//        <p class="pure-u-1-2">伊利股份 <i>600887</i></p>
+//        <p class="pure-u-1-2 tr">证券卖出</p>
+//    </div>
+//    <div class="pure-u-1-3 eui-grid-col tl">
+//     	 <p> 2020/07/16</p>
+//    	 <span>交收日期</span>
+//        <p>￥34.600</p>
+//        <span>成交价格</span>
+//        <p>0.00</p>
+//        <span>股份余额</span>
+//        <p>￥93.54</p>
+//        <span>净佣金</span>
+//        <p>￥0.97</p>
+//        <span>过户费</span>
+//        <p>￥0.00</p>
+//        <span>前台费用</span>
+//    </div>
+//    <div class="pure-u-1-3 eui-grid-col">
+//        <p>A493418262</p>
+//        <span>股东账户</span>
+//        <p>1400.00</p>
+//        <span>成交数量</span>
+//        <p>￥48293.71</p>
+//        <span>清算金额</span>
+//        <p>￥3.34</p>
+//        <span>规费</span>
+//        <p>￥0.00</p>
+//        <span>经手费</span>
+//        <p>￥0.00</p>
+//        <span>交易规费</span>
+//    </div>
+//    <div class="pure-u-1-3 eui-grid-col">
+//        <p>0018017037</p>
+//        <span>资金账号</span>
+//        <p>￥48440.00</p>
+//        <span>成交金额</span>
+//        <p>￥146.29</p>
+//        <span>费用总计</span>
+//        <p>￥48.44</p>
+//        <span>印花税</span>
+//        <p>￥0.00</p>
+//        <span>清算费</span>
+//        <p>￥0.00</p>
+//        <span>证管费</span>
+//    </div>
+//</div>
+	
+	//*[@id="billing-panel"]/div[1]
+//	<div class="eui-grid-row line">
+//    <div class="eui-grid-row-title">
+//        <p class="pure-u-1-2">广发聚鑫 <i>000119</i></p>
+//        <p class="pure-u-1-2 tr">基金申购拨出</p>
+//    </div>
+//    <div class="pure-u-1-3 eui-grid-col tl">
+//     	 <p> 2020/07/17</p>
+//    	 <span>交收日期</span>
+//        <p>￥0.000</p>
+//        <span>成交价格</span>
+//        <p>28815.00</p>
+//        <span>股份余额</span>
+//        <p>￥0.00</p>
+//        <span>净佣金</span>
+//        <p>￥0.00</p>
+//        <span>过户费</span>
+//        <p>￥0.00</p>
+//        <span>前台费用</span>
+//    </div>
+//    <div class="pure-u-1-3 eui-grid-col">
+//        <p>27156508098</p>
+//        <span>股东账户</span>
+//        <p>0.00</p>
+//        <span>成交数量</span>
+//        <p>￥-4000.00</p>
+//        <span>清算金额</span>
+//        <p>￥0.00</p>
+//        <span>规费</span>
+//        <p>￥0.00</p>
+//        <span>经手费</span>
+//        <p>￥0.00</p>
+//        <span>交易规费</span>
+//    </div>
+//    <div class="pure-u-1-3 eui-grid-col">
+//        <p>0018017037</p>
+//        <span>资金账号</span>
+//        <p>￥4000.00</p>
+//        <span>成交金额</span>
+//        <p>￥0.00</p>
+//        <span>费用总计</span>
+//        <p>￥0.00</p>
+//        <span>印花税</span>
+//        <p>￥0.00</p>
+//        <span>清算费</span>
+//        <p>￥0.00</p>
+//        <span>证管费</span>
+//    </div>
+//</div>
+	
+	/**
+	 * <div id="" class="eui-tabs-title eui-tabs-title1 pure-g">
+				<!-- 时间检索 -->
+<!-- 时间检索 -->
+<div class="eui-card card-time pure-u-1-2">
+	<div class="eui-card-header noBorder">
+		<p class="eui-card-header-icon icon-clock"></p>
+		<span class="eui-card-header-title">起始时间</span> </div>
+	<div id="start" class="eui-card-content mbsc-comp">
+		<div class="eui-lwra bgWhite" style="padding-left: 10px; margin: 0px !important;">
+			<div id="startDate" class="eui-lwra-title">2020/07/19</div>
+			<div class="eui-lwra-arrow"></div>
+		</div>
+	</div>
+</div>
+<div class="eui-card card-time pure-u-1-2">
+	<div class="eui-card-header noBorder">
+		<p class="eui-card-header-icon icon-clock"></p>
+		<span class="eui-card-header-title">截止时间</span> </div>
+	<div id="end" class="eui-card-content mbsc-comp">
+		<div class="eui-lwra bgWhite" style="padding-left: 10px; margin: 0px !important;">
+			<div id="endDate" class="eui-lwra-title">2020/07/20</div>
+			<div class="eui-lwra-arrow"></div>
+		</div>
+	</div>
+</div>
+
+				<!-- 历史成交 -->
+				<div class="eui-tabs tabs2 allIn">
+					<div id="" class="eui-tabs-title eui-tabs-title0">
+						<div class="pure-g eui-grid">
+							<div class="eui-grid-content bg" id="history-panel"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	 * 历史交易记录 :history-panel
+	 * @throws Exception
+	 */
+	@Test
+	public void history_trans_detail() throws Exception{
+		//0.登录
+		login();
+		//1.持仓列表
+		driver.get("https://i.gtja.com/evercos/securities/stock/query/deal.html");
+		
+		Thread.sleep(300000);
 	}
 	
 }

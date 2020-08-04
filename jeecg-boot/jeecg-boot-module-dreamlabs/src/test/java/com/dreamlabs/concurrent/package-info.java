@@ -5,4 +5,4 @@
  * @author Frank Zhang
  *
  */
-package com.dreamslab.concurrent;
+package com.dreamlabs.concurrent;

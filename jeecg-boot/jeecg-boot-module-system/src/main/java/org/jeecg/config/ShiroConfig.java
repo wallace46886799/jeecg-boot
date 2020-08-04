@@ -63,13 +63,15 @@ public class ShiroConfig {
 		if(oConvertUtils.isNotEmpty(excludeUrls)){
 			String[] permissionUrl = excludeUrls.split(",");
 			for(String url : permissionUrl){
+				log.info("Shiro Filter excludes url:{}",url);
 				filterChainDefinitionMap.put(url,"anon");
 			}
 		}
-
 		//cas验证登录
 		filterChainDefinitionMap.put("/cas/client/validateLogin", "anon");
 		// 配置不会被拦截的链接 顺序判断
+		filterChainDefinitionMap.put("/auth/api/login", "anon"); //登录接口排除
+		
 		filterChainDefinitionMap.put("/sys/randomImage/**", "anon"); //登录验证码接口排除
 		filterChainDefinitionMap.put("/sys/checkCaptcha", "anon"); //登录验证码接口排除
 		filterChainDefinitionMap.put("/sys/login", "anon"); //登录接口排除
@@ -136,6 +138,9 @@ public class ShiroConfig {
 		// 未授权界面返回JSON
 		shiroFilterFactoryBean.setUnauthorizedUrl("/sys/common/403");
 		shiroFilterFactoryBean.setLoginUrl("/sys/common/403");
+		
+		
+
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}

@@ -1,4 +1,4 @@
-package com.dreamslab.http;
+package com.dreamlabs.http;
 
 import java.io.IOException;
 import java.util.Date;

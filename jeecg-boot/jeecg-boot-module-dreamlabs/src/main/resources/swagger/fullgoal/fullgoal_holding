@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "message": "操作成功！",
+  "code": 200,
+  "result": {
+    "total": 2,
+    "holding_balance": 0,
+    "holding_shares": [
+      {
+        "code": "100061",
+        "name": "富国中国中小盘混合（QDII）",
+        "shares": 20988.66,
+        "available_shares": 20988.66,
+        "amount": 50855.52,
+        "current_percent": 0,
+        "current_porfit": 0,
+        "orig_price": 2.38,
+        "orig_amount": 50000,
+        "price": 2.42,
+        "price_date": "2020-08-01 00:00:00",
+        "floating_percent": 0.0171,
+        "floating_porfit": 855.52,
+        "porfit": 855.52,
+        "asset_percent": 0,
+        "type": null
+      },
+      {
+        "code": "161005",
+        "name": "富国天惠成长混合(LOF)",
+        "shares": 9176.44,
+        "available_shares": 9176.44,
+        "amount": 30460.27,
+        "current_percent": 0,
+        "current_porfit": 0,
+        "orig_price": 0.4,
+        "orig_amount": 3699.57,
+        "price": 3.32,
+        "price_date": "2020-08-01 00:00:00",
+        "floating_percent": 7.2335,
+        "floating_porfit": 26760.7,
+        "porfit": 26760.7,
+        "asset_percent": 0,
+        "type": null
+      }
+    ]
+  },
+  "timestamp": 1596296205184
+}

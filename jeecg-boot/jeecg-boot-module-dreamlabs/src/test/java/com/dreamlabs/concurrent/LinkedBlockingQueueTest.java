@@ -1,4 +1,4 @@
-package com.dreamslab.concurrent;
+package com.dreamlabs.concurrent;
 
 import static org.junit.Assert.*;
 

@@ -1,0 +1,11 @@
+<settings>
+    <!-- omitted xml -->
+    <servers>
+        <server>
+            <!--仓库 ID-->
+            <id>frank828100-dreamlabs-genius-maven</id>
+            <username>maven-1594528021655</username>
+            <password>33f1417096f14dc6c4e38739c197f1028f971308</password>
+        </server>
+    </servers>
+</settings>

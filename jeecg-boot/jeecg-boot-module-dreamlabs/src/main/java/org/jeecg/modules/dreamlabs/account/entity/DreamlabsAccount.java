@@ -1,17 +1,19 @@
 package org.jeecg.modules.dreamlabs.account.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+
+import org.jeecg.common.aspect.annotation.Dict;
+import org.jeecgframework.poi.excel.annotation.Excel;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.jeecgframework.poi.excel.annotation.Excel;
-import org.jeecg.common.aspect.annotation.Dict;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 /**
  * @Description: 账户表
@@ -71,6 +73,11 @@ public class DreamlabsAccount implements Serializable {
     @Dict(dictTable = "dreamlabs_org", dicText = "org_name", dicCode = "id")
     @ApiModelProperty(value = "所属机构")
     private java.lang.String orgOwner;
+	/**状态*/
+	@Excel(name = "账户别名", width = 15)
+    @Dict(dicCode = "account_alias")
+    @ApiModelProperty(value = "账户别名")
+    private java.lang.String accountAlias;
 	/**状态*/
 	@Excel(name = "状态", width = 15, dicCode = "dict_item_status")
     @Dict(dicCode = "dict_item_status")
