@@ -19,6 +19,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
+import com.dreamlabs.junit.BaseTest;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import net.lightbody.bmp.BrowserMobProxy;
@@ -29,7 +31,7 @@ import net.lightbody.bmp.mitm.TrustSource;
 import net.lightbody.bmp.proxy.CaptureType;
 
 @Slf4j
-public class EFundTest {
+public class EFundTest extends BaseTest {
 
 	private WebDriver driver;
 
@@ -123,7 +125,7 @@ public class EFundTest {
 		Thread.sleep(3000);
 		driver.findElement(By.id("certID")).sendKeys("420303198209121736");
 		Thread.sleep(3000);
-		driver.findElement(By.id("tradepassword")).sendKeys("19820801");
+		driver.findElement(By.id("tradepassword")).sendKeys(decrypt8Password());
 		Thread.sleep(3000);
 		driver.findElement(By.id("submitBtn")).click();
 		Thread.sleep(3000);

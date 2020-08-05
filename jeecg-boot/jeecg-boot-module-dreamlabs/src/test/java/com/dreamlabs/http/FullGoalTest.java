@@ -20,6 +20,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
+import com.dreamlabs.junit.BaseTest;
+
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
@@ -33,7 +35,7 @@ import net.lightbody.bmp.mitm.TrustSource;
 import net.lightbody.bmp.proxy.CaptureType;
 
 @Slf4j
-public class FullGoalTest {
+public class FullGoalTest extends BaseTest {
 
 	private WebDriver driver;
 
@@ -128,7 +130,7 @@ public class FullGoalTest {
 		Thread.sleep(3000);
 		driver.findElement(By.id("lognumberMode2")).sendKeys("420303198209121736");
 		Thread.sleep(3000);
-		driver.findElement(By.id("passwordMode2")).sendKeys("19820801");
+		driver.findElement(By.id("passwordMode2")).sendKeys(super.decrypt1Password());
 		Thread.sleep(3000);
 		//// *[@id="container"]/div/div/div[2]/div[2]/div/div/div/div[2]/div[2]/div[2]/form/div[3]/div/div/button
 		driver.findElement(By.id("loginForm_submit")).click();

@@ -11,7 +11,9 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-public class JsfundTest {
+
+import com.dreamlabs.junit.BaseTest;
+public class JsfundTest extends BaseTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -37,8 +39,8 @@ public class JsfundTest {
     driver.findElement(By.id("loginno")).click();
     // 4 | type | id=loginno | 420303198209121736
     driver.findElement(By.id("loginno")).sendKeys("420303198209121736");
-    // 5 | type | id=pwd | 828100
-    driver.findElement(By.id("pwd")).sendKeys("828100");
+    // 5 | type | id=pwd | ******
+    driver.findElement(By.id("pwd")).sendKeys(super.decrypt8Password());
     // 6 | click | id=submit_btn | 
     driver.findElement(By.id("submit_btn")).click();
     // 7 | click | id=accodealquery | 

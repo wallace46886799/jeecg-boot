@@ -1,5 +1,6 @@
 package org.jeecg.modules.dreamlabs.transaction;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 
 import cn.hutool.core.convert.ConverterRegistry;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +41,29 @@ public abstract class AbstractTransaction implements Transaction {
 	
 	@Autowired
 	protected ConverterRegistry converterRegistry;
+	
+	/**
+	 * 
+	 * @param amount
+	 * @param price
+	 * @param profit
+	 * @return
+	 */
+	protected Map<String,BigDecimal> parseProfitLoss(BigDecimal amount,BigDecimal price, BigDecimal floatingProfit){
+		if (amount == null || price == null || floatingProfit == null) {
+			throw new IllegalArgumentException("Please check arguments.");
+		}
+		Map<String,BigDecimal> result = new HashMap<String,BigDecimal> ();
+		BigDecimal origAmount = NumberUtil.round(NumberUtil.sub(amount,floatingProfit), 2);
+		result.put("origAmount", origAmount);
+		BigDecimal share =  NumberUtil.round( NumberUtil.div(amount,price), 2);
+		result.put("share", share);
+		BigDecimal origPrice = NumberUtil.round( NumberUtil.div(origAmount,share), 2);
+		result.put("origPrice", origPrice);
+		BigDecimal floatingPercent = NumberUtil.round( NumberUtil.div(floatingProfit,origAmount), 4);
+		result.put("floatingPercent", floatingPercent);
+		return result;
+	}
 	
 	/**
 	 * 百分数保留小数点后4位

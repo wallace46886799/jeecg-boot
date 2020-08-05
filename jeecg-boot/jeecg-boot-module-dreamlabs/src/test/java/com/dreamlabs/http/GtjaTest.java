@@ -24,6 +24,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
+import com.dreamlabs.junit.BaseTest;
+
 import cn.hutool.core.text.StrSpliter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +37,7 @@ import net.lightbody.bmp.mitm.TrustSource;
 import net.lightbody.bmp.proxy.CaptureType;
 
 @Slf4j
-public class GtjaTest {
+public class GtjaTest extends BaseTest {
 
 	private WebDriver driver;
 	
@@ -177,7 +179,7 @@ public class GtjaTest {
 		
 		driver.get("https://i.gtja.com/evercos/in.html");
 		Thread.sleep(3000);
-		driver.findElement(By.id("quicklyPassword")).sendKeys("828100");
+		driver.findElement(By.id("quicklyPassword")).sendKeys(super.decrypt8Password());
 		Thread.sleep(3000);
 		driver.findElement(By.id("quicklyLogin")).click();
 		Thread.sleep(3000);

@@ -9,6 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.Cookie;
 
+import com.dreamlabs.junit.BaseTest;
+
 import cn.hutool.core.text.StrSpliter;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
@@ -16,7 +18,7 @@ import cn.hutool.http.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class HutoolTest {
+public class HutoolTest extends BaseTest{
 
 	
 
@@ -150,7 +152,7 @@ public class HutoolTest {
 			request1 = request1.form("trackcode", "3de91058f705db1842ea9d1c3b607aa1");
 			request1 = request1.form("opEntrustWay", "1");
 			request1 = request1.form("captcha", "");
-			request1 = request1.form("password", "828100");
+			request1 = request1.form("password", super.decrypt8Password());
 
 			HttpResponse response1 = request1.execute();
 			log.info("<====:" + response1.headers().toString());

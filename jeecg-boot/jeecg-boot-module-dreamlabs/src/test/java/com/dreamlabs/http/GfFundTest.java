@@ -20,6 +20,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
+import com.dreamlabs.junit.BaseTest;
+
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
@@ -33,7 +35,7 @@ import net.lightbody.bmp.mitm.TrustSource;
 import net.lightbody.bmp.proxy.CaptureType;
 
 @Slf4j
-public class GfFundTest {
+public class GfFundTest extends BaseTest {
 
 	private WebDriver driver;
 
@@ -128,7 +130,7 @@ public class GfFundTest {
 		Thread.sleep(3000);
 		driver.findElement(By.id("userName")).sendKeys("420303198209121736");
 		Thread.sleep(3000);
-		driver.findElement(By.id("password")).sendKeys("zf828100");
+		driver.findElement(By.id("password")).sendKeys(super.decryptzPassword());
 		Thread.sleep(3000);
 		//// *[@id="container"]/div/div/div[2]/div[2]/div/div/div/div[2]/div[2]/div[2]/form/div[3]/div/div/button
 		driver.findElement(By.xpath(

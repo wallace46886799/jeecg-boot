@@ -113,6 +113,7 @@ public class EFundHoldingSpider extends AbstractEFundSpider {
 			log.info("基金总盈亏-profit:{}",profit);
 			BigDecimal profit_bd = this.converterRegistry.convert(BigDecimal.class, profit);
 			holdShare.setProfit(profit_bd);
+			
 			if (BigDecimal.ZERO.compareTo(floating_profit_bd) == 0) {
 				floating_profit_bd = profit_bd;
 				holdShare.setFloatingProfit(profit_bd);
@@ -125,21 +126,18 @@ public class EFundHoldingSpider extends AbstractEFundSpider {
 			
 			// 成本
 			BigDecimal orig_amount_bd = BigDecimal.ZERO;
-			if(BigDecimal.ZERO.compareTo(orig_price_bd) == 0) {
-				orig_amount_bd = NumberUtil.sub(current_amount_bd,profit_bd).setScale(2, BigDecimal.ROUND_HALF_UP);
-				log.info("基金成本金额-orig_amount:{}", orig_amount_bd);
-				holdShare.setOrigAmount(orig_amount_bd);
-			}else {
-				orig_amount_bd = NumberUtil.mul(orig_price_bd,share_bd).setScale(2, BigDecimal.ROUND_HALF_UP);
-				log.info("基金成本金额-orig_amount:{}", orig_amount_bd);
-				holdShare.setOrigAmount(orig_amount_bd);
-			}
+			orig_amount_bd = NumberUtil.sub(current_amount_bd,profit_bd).setScale(2, BigDecimal.ROUND_HALF_UP);
+			log.info("基金成本金额-orig_amount:{}", orig_amount_bd);
+			holdShare.setOrigAmount(orig_amount_bd);
 			
 			// 浮动收益率
 			if (BigDecimal.ZERO.compareTo(orig_amount_bd) != 0) {
 				BigDecimal floating_percent_bd =NumberUtil.round(NumberUtil.div(floating_profit_bd, orig_amount_bd),4);
 				log.info("基金浮动收益比例-floating_percent:{}", floating_percent_bd);
 				holdShare.setFloatingPercent(floating_percent_bd);
+			}
+			// 成本价格为0，再次设置成本价格
+			if (BigDecimal.ZERO.compareTo(orig_price_bd) == 0) {
 				orig_price_bd = NumberUtil.div(orig_amount_bd,share_bd).setScale(2, BigDecimal.ROUND_HALF_UP);
 				holdShare.setOrigPrice(orig_price_bd);
 			}

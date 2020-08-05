@@ -20,6 +20,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
+import com.dreamlabs.junit.BaseTest;
+
 import cn.hutool.core.util.NumberUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +33,7 @@ import net.lightbody.bmp.mitm.TrustSource;
 import net.lightbody.bmp.proxy.CaptureType;
 
 @Slf4j
-public class JsFundTest {
+public class JsFundTest extends BaseTest {
 
 	private WebDriver driver;
 	
@@ -147,7 +149,7 @@ public class JsFundTest {
 		Thread.sleep(3000);
 		driver.findElement(By.id("loginno")).sendKeys("420303198209121736");
 		Thread.sleep(3000);
-		driver.findElement(By.id("pwd")).sendKeys("828100");
+		driver.findElement(By.id("pwd")).sendKeys(super.decrypt8Password());
 		Thread.sleep(3000);
 		driver.findElement(By.id("submit_btn")).click();
 		Thread.sleep(3000);

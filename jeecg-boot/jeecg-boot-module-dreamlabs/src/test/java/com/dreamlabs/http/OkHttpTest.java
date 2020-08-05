@@ -10,6 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.Cookie;
 
+import com.dreamlabs.junit.BaseTest;
+
 import cn.hutool.core.text.StrSpliter;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -19,7 +21,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 @Slf4j
-public class OkHttpTest {
+public class OkHttpTest extends BaseTest{
 
 	
 
@@ -96,7 +98,7 @@ public class OkHttpTest {
 		form_builder = form_builder.add("trackcode", "3de91058f705db1842ea9d1c3b607aa1");
 		form_builder = form_builder.add("opEntrustWay", "1");
 		form_builder = form_builder.add("captcha", "");
-		form_builder = form_builder.add("password", "828100");
+		form_builder = form_builder.add("password", super.decrypt8Password());
 		FormBody loing_body = form_builder.build();
 		
 		Request login_request = request_builder.url(login_url)
