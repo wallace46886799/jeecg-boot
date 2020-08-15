@@ -42,6 +42,7 @@ public abstract class AbstractGtjaSpider extends SeleniumTransaction implements 
 		chromeOptions.addArguments("Sec-Fetch-Dest: document");
 		chromeOptions.addArguments("Accept-Encoding: gzip, deflate, br");
 		chromeOptions.addArguments("Accept-Language: zh,zh-CN;q=0.9");
+		chromeOptions.addArguments("--headless");
 		WebDriver driver = new ChromeDriver(chromeOptions);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);

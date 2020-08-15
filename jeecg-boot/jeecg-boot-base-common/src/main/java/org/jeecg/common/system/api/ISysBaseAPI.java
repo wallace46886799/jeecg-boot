@@ -1,15 +1,22 @@
 package org.jeecg.common.system.api;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import org.jeecg.common.system.vo.*;
+import javax.servlet.http.HttpServletResponse;
+
+import org.jeecg.common.system.vo.ComboModel;
+import org.jeecg.common.system.vo.DictModel;
+import org.jeecg.common.system.vo.DynamicDataSourceModel;
+import org.jeecg.common.system.vo.LoginUser;
+import org.jeecg.common.system.vo.SysCategoryModel;
+import org.jeecg.common.system.vo.SysDepartModel;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 
 /**
  * @Description: 底层共通业务API，提供其他独立模块调用
@@ -305,8 +312,7 @@ public interface ISysBaseAPI {
 	 * @param response
 	 */
 	public void viewAndDownload(String filePath, String uploadpath, String uploadType,HttpServletResponse response);
-
-
+	
 	/**
 	 * 给指定用户发消息
 	 * @param userIds
@@ -320,6 +326,7 @@ public interface ISysBaseAPI {
 	 * @return
 	 */
 	public List<LoginUser> queryAllUserByIds(String[] userIds);
+	
 	/**
 	 * 将会议签到信息推动到预览
 	 * userIds
@@ -327,10 +334,21 @@ public interface ISysBaseAPI {
 	 * @param userId
 	 */
     void meetingSignWebsocket(String userId);
+    
 	/**
 	 * 根据name获取所有参与用户
 	 * userNames
 	 * @return
 	 */
 	List<LoginUser> queryUserByNames(String[] userNames);
+	
+	/**
+	 * 
+	 * @param type
+	 * @param toUser
+	 * @param title
+	 * @param message
+	 */
+	public void addMessage(String type, String toUser, String title, String message, Date esSendTime);
+
 }

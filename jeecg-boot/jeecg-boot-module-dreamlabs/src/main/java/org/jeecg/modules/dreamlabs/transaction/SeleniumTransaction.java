@@ -28,6 +28,7 @@ public abstract class SeleniumTransaction extends AbstractTransaction {
 	 */
 	protected WebDriver createWebDriver() {
 		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--headless");
 		WebDriver driver = new ChromeDriver(chromeOptions);
 		driver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT,TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(PAGELOAD_TIMEOUT,TimeUnit.SECONDS);
@@ -87,7 +88,9 @@ public abstract class SeleniumTransaction extends AbstractTransaction {
 		try {
 			driver = this.createWebDriver();
 			this.login(driver, org, orParamsMap, account, accountParamsMap);
+			preTransaction(driver, org, orParamsMap, account, accountParamsMap);
 			result = this.internalTransaction(driver, org, orParamsMap, account, accountParamsMap);
+			postTransaction(driver, org, orParamsMap, account, accountParamsMap,result);
 			this.logout(driver, org, orParamsMap, account, accountParamsMap);
 		}catch(Exception e){
 			log.error("《==============同步信息错误，日期:{}，时间:{}，账户编号:{}", DateUtils.getDate("yyyy-MM-dd"), DateUtils.now(),id);
@@ -126,6 +129,20 @@ public abstract class SeleniumTransaction extends AbstractTransaction {
 	 * @throws Exception
 	 */
 	protected abstract Map<String, Object> internalTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap, DreamlabsAccount account, Map<String, String> accountParamsMap) throws Exception;
+	
+	
+	
+	protected void preTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap) throws Exception {
+		return;
+	}
+
+	
+	protected void postTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap, Map<String, Object> result)
+			throws Exception {
+		return;
+	}
 	
 
 }

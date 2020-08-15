@@ -17,7 +17,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class TransactionItem {
+public class EntrustItem {
 	/**
 	 * 标的代码
 	 */
@@ -28,39 +28,39 @@ public class TransactionItem {
 	 */
 	private String name;
 	/**
-	 * 交易日期
+	 * 委托日期
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date date;
 	/**
-	 * 交易时间
+	 * 委托时间
 	 */
 	@JsonFormat(pattern = "HH:mm:ss", timezone = "GMT+8")
 	private Date time;
 	/**
-	 * 交易价格，净值
+	 * 委托价格
 	 */
 	private BigDecimal price;
 	/**
-	 * 交易类型
+	 * 委托类型
 	 */
-	private String dealType;
+	private String entrustType;
 	/**
-	 * 交易份额
+	 * 委托份额
 	 */
-	private BigDecimal dealShare;
+	private BigDecimal entrustShare;
 	/**
-	 * 交易状态
+	 * 委托状态
 	 */
-	private String dealStatus;
+	private String entrustStatus;
 	/**
 	 * 委托份额
 	 */
 	private BigDecimal share;
 	/**
-	 * 交易金额
+	 * 委托金额
 	 */
-	private BigDecimal dealAmount;
+	private BigDecimal entrustAmount;
 	/**
 	 * 手续费
 	 */
@@ -69,6 +69,7 @@ public class TransactionItem {
 	 * 单位
 	 */
 	private String unit;
+	
 	
 
 }

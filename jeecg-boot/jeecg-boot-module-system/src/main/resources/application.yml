@@ -6,7 +6,7 @@ swagger:
   basic:
     enable: true
     username: jeecg
-    password: ENC(vegbdprNaLBGnmE7DuyZiM7UqwJaQcXtRFvCCSHttSmmuvnMjffNsyOU8tZFk5Ui)
+    password: ENC(Os8Nb73PltCoOaDeW5LfW+Cat7o9Fq9c)
 # 第三方登录
 justauth:
   enabled: true

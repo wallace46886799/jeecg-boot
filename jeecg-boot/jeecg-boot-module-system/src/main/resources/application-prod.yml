@@ -22,8 +22,8 @@ spring:
         max-request-size: 10MB
   mail:
     host: smtp.163.com
-    username: dramlabs@163.com
-    password: ENC(PRU/DRSVkHGQ9x/XSbDiZr6jFHI4SmqAac1BZv8zlz35TG4hs1gFIP5J5+TX8HHX)
+    username: dreamlabs@163.com
+    password: ENC(VKF7e7forba9ii1jyic5j2L7cL4/K4gOyDdEysSWFi4=)
     properties:
       mail:
         smtp:
@@ -97,7 +97,7 @@ spring:
       stat-view-servlet:
         enabled: true
         loginUsername: admin
-        loginPassword: ENC(kMus2mgV1yasNdaBge9FAdhJTGukSky2EfqtGGJSr5EpEtSJ75R82bkpqzJCAVc6)
+        loginPassword: ENC(a2YjuaoEItgbMxEcG+jjcA==)
         allow:
       web-stat-filter:
         enabled: true
@@ -129,7 +129,7 @@ spring:
         master:
           url: jdbc:mysql://dreamlabs.site:3306/dreamlabs-genius?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false
           username: dreamlabs
-          password: ENC(PRU/DRSVkHGQ9x/XSbDiZr6jFHI4SmqAac1BZv8zlz35TG4hs1gFIP5J5+TX8HHX)
+          password: ENC(QDggDqSa5nP62kJQNYcRugjya8y2GW9t)
           driver-class-name: com.mysql.jdbc.Driver
           # 多数据源配置
           #multi-datasource1:
@@ -167,10 +167,10 @@ mybatis-plus:
     # 返回类型为Map,显示null对应的字段
     call-setters-on-nulls: true
 #jeecg专用配置
-jeecg :
+jeecg:
   # 本地：local\Minio：minio\阿里云：alioss
   uploadType: local
-  path :
+  path:
     #文件上传根目录 设置
     upload: //Users//Frank//Temp//upload
     #webapp文件路径

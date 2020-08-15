@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 import cn.hutool.core.convert.Converter;
 import cn.hutool.core.util.StrUtil;
-import me.zhyd.oauth.log.Log;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class BigDecimalConverter  implements Converter<BigDecimal>{
 	@Override
 	public BigDecimal convert(Object value, BigDecimal defaultValue) throws IllegalArgumentException {
@@ -22,17 +22,20 @@ public class BigDecimalConverter  implements Converter<BigDecimal>{
 				origValue = StrUtil.removeAll(origValue,"%");
 				origValue = StrUtil.removeAll(origValue,",");
 				origValue = StrUtil.removeAll(origValue," ");
+				origValue = StrUtil.removeAll(origValue,"股");
 				result = new BigDecimal(origValue).multiply(new BigDecimal("0.01")).setScale(4, BigDecimal.ROUND_HALF_UP);
 			} else {
 				origValue = StrUtil.removeAll(origValue, "¥");
+				origValue = StrUtil.removeAll(origValue, "￥");
 				origValue = StrUtil.removeAll(origValue, ",");
 				origValue = StrUtil.removeAll(origValue, " ");
+				origValue = StrUtil.removeAll(origValue,"股");
 				result = new BigDecimal(origValue).setScale(2, BigDecimal.ROUND_HALF_UP);
 			}
 		}catch(Exception e) {
-			Log.error("Error.",e);
+			log.info("Value is {}.", value);
+			log.error("Error.",e);
 		}
-		
 		return result;
 	}
 }

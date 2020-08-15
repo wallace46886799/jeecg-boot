@@ -146,10 +146,12 @@ public class FullGoalHoldingSpider extends AbstractFullGoalSpider {
 			holdShare.setPriceDate(new Date());
 			String floating_profit = driver.findElement(By.xpath("//*[@id=\"mtoincom\"]")).getText();
 			BigDecimal floating_profit_bd = this.converterRegistry.convert(BigDecimal.class, floating_profit);
-			holdShare.setFloatingProfit(floating_profit_bd);
+			log.info("floating_profit:{}",floating_profit_bd);
+			holdShare.setFloatingProfit(BigDecimal.ZERO);
 			holdShare.setFloatingPercent(BigDecimal.ZERO);
 			String current_profit = driver.findElement(By.xpath("//*[@id=\"mdayincom\"]")).getText();
 			BigDecimal current_profit_bd = this.converterRegistry.convert(BigDecimal.class, current_profit);
+			log.info("current_profit:{}",current_profit_bd);
 			holdShare.setLastFloatingProfit(current_profit_bd);
 			holdShares.add(holdShare);
 		}

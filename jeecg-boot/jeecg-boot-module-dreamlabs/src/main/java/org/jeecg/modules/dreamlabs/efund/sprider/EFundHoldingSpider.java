@@ -45,8 +45,8 @@ public class EFundHoldingSpider extends AbstractEFundSpider {
 		String surfix5 = "]/div[1]/div[2]/div[1]/div[3]/span[2]";
 		String surfix6 = "]/div[1]/div[2]/div[2]/div[3]/span[2]";
 		String surfix7 = "]/div[1]/div[2]/div[1]/div[4]/span[2]";
-		String surfix8 = "]/div[1]/div[2]/div[2]/div[4]/span[2]";
-		String surfix9 = "]/div[1]/div[2]/div[1]/div[5]/span[2]";
+		String surfix8 = "]/div[1]/div[2]/div[2]/div[4]/span[2]";//*[@id="currency156"]/div[2]/div[1]/div[1]/div[2]/div[2]/div[4]/span[2]
+		String surfix9 = "]/div[1]/div[2]/div[1]/div[5]/span[2]";//*[@id="currency156"]/div[2]/div[1]/div[1]/div[2]/div[1]/div[5]/span[2]
 		String surfix10 = "]/div[1]/div[2]/div[2]/div[5]/span[2]";
 		
 		List<FundShareItem> holdShares = new ArrayList<FundShareItem>();
@@ -102,7 +102,7 @@ public class EFundHoldingSpider extends AbstractEFundSpider {
 			log.info("基金当日盈亏-current_profit:{}",current_profit);
 			holdShare.setLastFloatingProfit(this.converterRegistry.convert(BigDecimal.class, current_profit));
 			
-			// 浮动持仓收益
+			// 浮动持仓收益  //*[@id="currency156"]/div[2]/div[1]/div[1]/div[2]/div[2]/div[4]/span[2]
 			String floating_profit = driver.findElement(By.xpath(prefix + String.valueOf(i) + surfix8)).getText();
 			log.info("基金浮动盈亏-floating_profit:{}",floating_profit);
 			BigDecimal floating_profit_bd = this.converterRegistry.convert(BigDecimal.class, floating_profit);
@@ -161,6 +161,19 @@ public class EFundHoldingSpider extends AbstractEFundSpider {
 		}else {
 			return name;
 		}
+	}
+	
+	@Override
+	protected void preTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap) throws Exception {
+		return;
+	}
+
+	@Override
+	protected void postTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap, Map<String, Object> result)
+			throws Exception {
+		return;
 	}
 
 }

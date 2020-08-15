@@ -1,13 +1,12 @@
 package org.jeecg.modules.message.handle.impl;
 
-import org.jeecg.common.util.SpringContextUtils;
-import org.jeecg.modules.message.handle.ISendMsgHandle;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+
+import org.jeecg.common.util.SpringContextUtils;
+import org.jeecg.modules.message.handle.ISendMsgHandle;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class EmailSendMsgHandle implements ISendMsgHandle {
     static String emailFrom;
@@ -17,7 +16,7 @@ public class EmailSendMsgHandle implements ISendMsgHandle {
     }
 
     @Override
-    public void SendMsg(String es_receiver, String es_title, String es_content) {
+    public void sendMsg(String es_receiver, String es_title, String es_content) {
         JavaMailSender mailSender = (JavaMailSender) SpringContextUtils.getBean("mailSender");
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = null;

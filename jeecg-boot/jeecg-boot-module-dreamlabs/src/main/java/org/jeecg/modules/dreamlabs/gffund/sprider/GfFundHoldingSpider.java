@@ -35,7 +35,7 @@ public class GfFundHoldingSpider extends AbstractGfFundSpider {
 		int size = elements.size();
 		
 		String prefix = "//*[@id=\"container\"]/div/div/div[3]/div[2]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/div/div/span/div/table/tbody/tr[";
-		// 名称
+		// 名称 //*[@id="container"]/div/div/div[3]/div[2]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/div/div/span/div/table/tbody/tr[1]/td[1]/span[2]/span[1]/a
 		//*[@id="container"]/div/div/div[3]/div[2]/div/div[2]/div/div[1]/div/div[2]/div/div/div/span/div/table/tbody/tr[1]/td[1]/div/span/span[1]/a
 		String surfix1 = "]/td[1]/span[2]/span[1]/a";
 		// 编码
@@ -99,7 +99,11 @@ public class GfFundHoldingSpider extends AbstractGfFundSpider {
 			log.info("code:{}", code);
 			holdShare.setCode(code);
 			log.info("name:{}", name);
-			holdShare.setName(StrUtil.subBefore(name, "(", true));
+			if(StrUtil.contains(name, '(')) {
+				holdShare.setName(StrUtil.subBefore(name, "(", true));
+			}else {
+				holdShare.setName(name);
+			}
 			log.info("amount:{}", current_amount);
 			BigDecimal current_amount_bd = this.converterRegistry.convert(BigDecimal.class, current_amount);
 			holdShare.setAmount(current_amount_bd);
@@ -128,7 +132,7 @@ public class GfFundHoldingSpider extends AbstractGfFundSpider {
 			log.info("orig_amount:{}", orig_amount_bd);
 			holdShare.setOrigAmount(orig_amount_bd);
 			
-			BigDecimal floating_percent_bd = NumberUtil.round(NumberUtil.div(floating_profit_bd,orig_amount_bd),2);
+			BigDecimal floating_percent_bd = NumberUtil.round(NumberUtil.div(floating_profit_bd,orig_amount_bd),4);
 			log.info("floating_percent:{}", floating_percent_bd);
 			holdShare.setFloatingPercent(floating_percent_bd);
 			
@@ -153,9 +157,9 @@ public class GfFundHoldingSpider extends AbstractGfFundSpider {
 			holdShare.setPriceDate(new Date());
 			
 			String floating_profit = driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div[3]/div[2]/div/div[1]/div/div[2]/div[1]/div[2]/div[2]/span[1]")).getText();
-			log.info("floating_profit:{}", floating_profit);
 			BigDecimal floating_profit_bd = this.converterRegistry.convert(BigDecimal.class, floating_profit);
-			holdShare.setFloatingProfit(floating_profit_bd);
+			log.info("floating_profit:{}", floating_profit_bd);
+			holdShare.setFloatingProfit(BigDecimal.ZERO);
 			holdShare.setFloatingPercent(BigDecimal.ZERO);
 			
 			String current_profit = driver.findElement(By.xpath("//*[@id=\"container\"]/div/div/div[3]/div[2]/div/div[1]/div/div[2]/div[1]/div[1]/div[2]/span[1]")).getText();
@@ -174,6 +178,19 @@ public class GfFundHoldingSpider extends AbstractGfFundSpider {
 		result.put("holding_balance", BigDecimal.ZERO);
 		return result;
 		
+	}
+
+	@Override
+	protected void preTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap) throws Exception {
+		return;
+	}
+
+	@Override
+	protected void postTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap, Map<String, Object> result)
+			throws Exception {
+		return;
 	}
 
 	

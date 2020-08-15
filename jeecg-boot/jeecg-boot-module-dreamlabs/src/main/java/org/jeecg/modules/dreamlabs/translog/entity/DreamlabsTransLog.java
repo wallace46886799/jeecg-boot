@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import net.bytebuddy.asm.Advice.This;
 
 /**
  * @Description: 交易日志表
@@ -95,4 +96,28 @@ public class DreamlabsTransLog implements Serializable {
 	@Excel(name = "备注", width = 15)
     @ApiModelProperty(value = "备注")
     private java.lang.String remark;
+	/**交易金额*/
+	@Excel(name = "交易价格", width = 15)
+    @ApiModelProperty(value = "交易价格")
+    private java.lang.String transPrice;
+	
+	public String messageContent() {
+		StringBuffer message = new StringBuffer();
+		message.append(this.accountId);
+		message.append("*");
+		message.append(this.targetCode);
+		message.append("*");
+		message.append(this.targetName);
+		message.append("*");
+		message.append(this.transPrice);
+		message.append("*");
+		message.append(this.transShare);
+		message.append("*");
+		message.append(this.transAmount);
+		message.append("*");
+		message.append(this.transType);
+		message.append("*");
+		message.append(this.status);
+		return message.toString();
+	}
 }

@@ -119,4 +119,17 @@ public class GfFundTransactionSpider extends AbstractGfFundSpider {
 		return result;
 
 	}
+	
+	@Override
+	protected void preTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap) throws Exception {
+		return;
+	}
+
+	@Override
+	protected void postTransaction(WebDriver driver, DreamlabsOrg org, Map<String, String> orParamsMap,
+			DreamlabsAccount account, Map<String, String> accountParamsMap, Map<String, Object> result)
+			throws Exception {
+		return;
+	}
 }

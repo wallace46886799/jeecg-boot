@@ -107,4 +107,5 @@ public class EFundTransactionSpider extends AbstractEFundSpider {
 		result.put("transactions", transactions);
 		return result;
 	}
+
 }

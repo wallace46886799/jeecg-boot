@@ -12,14 +12,12 @@ import lombok.ToString;
 
 /**
  * @author Frank
- *
+ * 参考：https://www.cnblogs.com/wynjauu/articles/9273759.html
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
 @ToString(callSuper=true)
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class StockTransactionItem extends TransactionItem {
-	
-
+public class StockEntrustItem extends EntrustItem {
 	
 }

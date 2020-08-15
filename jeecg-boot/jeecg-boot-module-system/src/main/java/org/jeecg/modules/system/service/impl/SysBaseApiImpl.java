@@ -1,6 +1,11 @@
 package org.jeecg.modules.system.service.impl;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
@@ -14,13 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.shiro.SecurityUtils;
 import org.jeecg.common.constant.CacheConstant;
 import org.jeecg.common.constant.CommonConstant;
@@ -28,14 +26,40 @@ import org.jeecg.common.constant.DataBaseConstant;
 import org.jeecg.common.constant.WebsocketConst;
 import org.jeecg.common.exception.JeecgBootException;
 import org.jeecg.common.system.api.ISysBaseAPI;
-import org.jeecg.common.system.vo.*;
-import org.jeecg.common.util.*;
+import org.jeecg.common.system.vo.ComboModel;
+import org.jeecg.common.system.vo.DictModel;
+import org.jeecg.common.system.vo.DynamicDataSourceModel;
+import org.jeecg.common.system.vo.LoginUser;
+import org.jeecg.common.system.vo.SysCategoryModel;
+import org.jeecg.common.system.vo.SysDepartModel;
+import org.jeecg.common.util.IPUtils;
+import org.jeecg.common.util.MinioUtil;
+import org.jeecg.common.util.SpringContextUtils;
+import org.jeecg.common.util.SysAnnmentTypeEnum;
+import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.common.util.oss.OssBootUtil;
+import org.jeecg.modules.message.entity.SysMessage;
 import org.jeecg.modules.message.entity.SysMessageTemplate;
+import org.jeecg.modules.message.service.ISysMessageService;
 import org.jeecg.modules.message.service.ISysMessageTemplateService;
 import org.jeecg.modules.message.websocket.WebSocket;
-import org.jeecg.modules.system.entity.*;
-import org.jeecg.modules.system.mapper.*;
+import org.jeecg.modules.system.entity.SysAnnouncement;
+import org.jeecg.modules.system.entity.SysAnnouncementSend;
+import org.jeecg.modules.system.entity.SysCategory;
+import org.jeecg.modules.system.entity.SysDataSource;
+import org.jeecg.modules.system.entity.SysDepart;
+import org.jeecg.modules.system.entity.SysDict;
+import org.jeecg.modules.system.entity.SysLog;
+import org.jeecg.modules.system.entity.SysRole;
+import org.jeecg.modules.system.entity.SysUser;
+import org.jeecg.modules.system.mapper.SysAnnouncementMapper;
+import org.jeecg.modules.system.mapper.SysAnnouncementSendMapper;
+import org.jeecg.modules.system.mapper.SysCategoryMapper;
+import org.jeecg.modules.system.mapper.SysDepartMapper;
+import org.jeecg.modules.system.mapper.SysLogMapper;
+import org.jeecg.modules.system.mapper.SysRoleMapper;
+import org.jeecg.modules.system.mapper.SysUserMapper;
+import org.jeecg.modules.system.mapper.SysUserRoleMapper;
 import org.jeecg.modules.system.service.ISysDataSourceService;
 import org.jeecg.modules.system.service.ISysDepartService;
 import org.jeecg.modules.system.service.ISysDictService;
@@ -43,12 +67,19 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @Description: 底层共通业务API，提供其他独立模块调用
@@ -61,6 +92,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class SysBaseApiImpl implements ISysBaseAPI {
 	/** 当前系统数据库类型 */
 	private static String DB_TYPE = "";
+	@Autowired
+	private ISysMessageService sysMessageService;
 	@Autowired
 	private ISysMessageTemplateService sysMessageTemplateService;
 	@Resource
@@ -764,7 +797,7 @@ public class SysBaseApiImpl implements ISysBaseAPI {
 	@Override
 	public List<LoginUser> queryUserByNames(String[] userNames) {
 		QueryWrapper<SysUser> queryWrapper = new QueryWrapper<SysUser>().eq("status",1).eq("del_flag",0);
-		queryWrapper.in("username",userNames);
+		queryWrapper.in("username", userNames);
 		List<LoginUser> loginUsers = new ArrayList<>();
 		List<SysUser> sysUsers = userMapper.selectList(queryWrapper);
 		for (SysUser user:sysUsers) {
@@ -773,5 +806,22 @@ public class SysBaseApiImpl implements ISysBaseAPI {
 			loginUsers.add(loginUser);
 		}
 		return loginUsers;
+	}
+
+	@Override
+	public void addMessage(String type, String toUser, String title, String message, Date esSendTime) {
+		SysMessage messageEntity = new SysMessage();
+		messageEntity.setEsType(type);
+		messageEntity.setEsReceiver(toUser);
+		messageEntity.setEsTitle(title);
+		messageEntity.setEsContent(message);
+		messageEntity.setEsSendTime(esSendTime);
+		messageEntity.setEsSendStatus("0");
+		messageEntity.setEsSendNum(0);
+		messageEntity.setCreateTime(new Date());
+		messageEntity.setCreateBy("Frank");
+		messageEntity.setUpdateTime(new Date());
+		messageEntity.setUpdateBy("Frank");
+		this.sysMessageService.save(messageEntity);
 	}
 }

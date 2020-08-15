@@ -54,11 +54,12 @@ public class SendMsgJob implements Job {
 			}
 			Integer sendNum = sysMessage.getEsSendNum();
 			try {
-				sendMsgHandle.SendMsg(sysMessage.getEsReceiver(), sysMessage.getEsTitle(),
+				sendMsgHandle.sendMsg(sysMessage.getEsReceiver(), sysMessage.getEsTitle(),
 						sysMessage.getEsContent().toString());
 				// 发送消息成功
 				sysMessage.setEsSendStatus(SendMsgStatusEnum.SUCCESS.getCode());
 			} catch (Exception e) {
+				log.error(e.getMessage(),e);
 				// 发送消息出现异常
 				sysMessage.setEsSendStatus(SendMsgStatusEnum.FAIL.getCode());
 			}
