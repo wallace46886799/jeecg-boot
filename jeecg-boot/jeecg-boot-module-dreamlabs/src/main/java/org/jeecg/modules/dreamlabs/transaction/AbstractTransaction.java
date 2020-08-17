@@ -152,8 +152,6 @@ public abstract class AbstractTransaction implements Transaction {
 	 */
 	protected DreamlabsOrg queryOrg(String orgId) {
 		IDreamlabsOrgService dreamlabsOrgService = SpringContextUtils.getBean(IDreamlabsOrgService.class);
-		LambdaQueryWrapper<DreamlabsOrg> org_q = new LambdaQueryWrapper<DreamlabsOrg>();
-		org_q.eq(DreamlabsOrg::getId, orgId);
 		DreamlabsOrg org = dreamlabsOrgService.getById(orgId);
 		log.info("交易机构:{}", org);
 		return org;
@@ -223,6 +221,7 @@ public abstract class AbstractTransaction implements Transaction {
 				.getBean(IDreamlabsUserParamService.class);
 		LambdaQueryWrapper<DreamlabsUserParam> user_query = new LambdaQueryWrapper<DreamlabsUserParam>();
 		user_query.eq(DreamlabsUserParam::getUserId, user.getId());
+		user_query.eq(DreamlabsUserParam::getStatus, "1");
 		List<DreamlabsUserParam> userParams = dreamlabsUserParamService.list(user_query);
 		Map<String, String> params = new HashMap<String, String>();
 		for (DreamlabsUserParam userParam : userParams) {
@@ -240,6 +239,7 @@ public abstract class AbstractTransaction implements Transaction {
 				.getBean(IDreamlabsOrgParamService.class);
 		LambdaQueryWrapper<DreamlabsOrgParam> org_query = new LambdaQueryWrapper<DreamlabsOrgParam>();
 		org_query.eq(DreamlabsOrgParam::getOrgId, org.getId());
+		org_query.eq(DreamlabsOrgParam::getStatus, "1");
 		List<DreamlabsOrgParam> orgParams = dreamlabsOrgParamService.list(org_query);
 		Map<String, String> params = new HashMap<String, String>();
 		for (DreamlabsOrgParam orgParam : orgParams) {
@@ -257,6 +257,7 @@ public abstract class AbstractTransaction implements Transaction {
 				.getBean(IDreamlabsAccountParamService.class);
 		LambdaQueryWrapper<DreamlabsAccountParam> account_query = new LambdaQueryWrapper<DreamlabsAccountParam>();
 		account_query.eq(DreamlabsAccountParam::getAccountId, account.getId());
+		account_query.eq(DreamlabsAccountParam::getStatus, "1");
 		List<DreamlabsAccountParam> accountParams = dreamlabsAccountParamService.list(account_query);
 		Map<String, String> params = new HashMap<String, String>();
 		for (DreamlabsAccountParam orgParam : accountParams) {
